@@ -150,6 +150,7 @@ app.get('/authorize', function(req, res) {
 
 app.get('/sendMessageFromCore', function(req, res) {
   console.log("Send Message from core");
+  res.sendStatus(200);
 });
 
 /*
