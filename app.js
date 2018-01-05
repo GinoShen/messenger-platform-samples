@@ -159,7 +159,8 @@ app.post('/sendMessageFromCore', function (req, res) {
   console.log(data);
   // Make sure this is a page subscription
   console.log(data.facebookId)
-  
+  var recipientId = data.facebookId;
+  sendRateChangedMessage(recipientId)
   res.sendStatus(200);
 });
 
@@ -817,6 +818,40 @@ function sendAccountLinking(recipientId) {
           buttons:[{
             type: "account_link",
             url: SERVER_URL + "/authorize"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+
+function sendRateChangedMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "EMQ",
+            subtitle: "The rate is changed since last time you submit trasaction. Would you like to submit it again",
+            item_url: "https://www.google.com.tw",
+            image_url: SERVER_URL + "/assets/rift.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://tw.yahoo.com",
+              title: "Open Web URL"
+            }, {
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for first bubble",
+            }],
           }]
         }
       }
