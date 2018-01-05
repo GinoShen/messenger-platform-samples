@@ -153,6 +153,14 @@ app.get('/sendMessageFromCore', function(req, res) {
   res.sendStatus(200);
 });
 
+app.post('/sendMessageFromCore', function (req, res) {
+  var data = req.body;
+  console.log(req.body);
+  console.log(data);
+  // Make sure this is a page subscription
+  res.sendStatus(200);
+});
+
 /*
  * Verify that the callback came from Facebook. Using the App Secret from
  * the App Dashboard, we can verify the signature that is sent with each
