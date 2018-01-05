@@ -839,18 +839,18 @@ function sendRateChangedMessage(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "EMQ",
-            subtitle: "The rate is changed since last time you submit trasaction. Would you like to submit it again",
+            title: "EMQ - Rate is chaged since last time you submitted transaction. Rate now is 6.131, you will pay 18 HKG more.",
+            subtitle: "Rate now is 6.131, you will pay 18 HKG more. Would you like to submit this trasaction again",
             item_url: "https://www.google.com.tw",
-            image_url: SERVER_URL + "/assets/rift.png",
+            image_url: SERVER_URL + "/assets/rateChanged.png",
             buttons: [{
               type: "web_url",
               url: "https://tw.yahoo.com",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
+              title: "Submit Again"
+            // }, {
+            //   type: "postback",
+            //   title: "Call Postback",
+            //   payload: "Payload for first bubble",
             }],
           }]
         }
