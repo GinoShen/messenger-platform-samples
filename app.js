@@ -847,6 +847,14 @@ function sendRateChangedMessage(recipientId) {
               type: "web_url",
               url: "https://tw.yahoo.com",
               title: "Submit Again"
+            },{
+                type: "web_url",
+                url: "https://tw.yahoo.com",
+                title: "Create a New Transaction"
+              // }, {
+              //   type: "postback",
+              //   title: "Call Postback",
+              //   payload: "Payload for first bubble",
             // }, {
             //   type: "postback",
             //   title: "Call Postback",
