@@ -148,6 +148,10 @@ app.get('/authorize', function(req, res) {
   });
 });
 
+app.get('/sendMessageFromCore', function(req, res) {
+  console.log("Send Message from core");
+});
+
 /*
  * Verify that the callback came from Facebook. Using the App Secret from
  * the App Dashboard, we can verify the signature that is sent with each
