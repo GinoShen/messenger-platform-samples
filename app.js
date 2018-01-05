@@ -160,7 +160,23 @@ app.post('/sendMessageFromCore', function (req, res) {
   // Make sure this is a page subscription
   console.log(data.facebookId)
   var recipientId = data.facebookId;
-  sendRateChangedMessage(recipientId)
+  var type = data.type;
+  var title = data.title;
+  var message = data.message;
+  switch (type) {
+    case 'transaction status updated':
+    sendTrasactionStatusUpdatedMessage(recipientId, title, message)
+      break;
+    case 'kyc reject':
+    sendKycRejectedMessage(recipientId, title, message)
+      break;
+
+    case 'rate change':
+    sendRateChangedMessage(recipientId, title, message)
+      break;
+
+    default:
+  }
   res.sendStatus(200);
 });
 
@@ -828,7 +844,7 @@ function sendAccountLinking(recipientId) {
 }
 
 
-function sendRateChangedMessage(recipientId) {
+function sendRateChangedMessage(recipientId, title, message) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -839,8 +855,8 @@ function sendRateChangedMessage(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "EMQ - Rate is chaged since last time you submitted transaction. Rate now is 6.131, you will pay 18 HKG more.",
-            subtitle: "Rate now is 6.131, you will pay 18 HKG more. Would you like to submit this trasaction again",
+            title: title,
+            subtitle: message,
             item_url: "https://www.google.com.tw",
             image_url: SERVER_URL + "/assets/rateChanged.png",
             buttons: [{
@@ -851,14 +867,64 @@ function sendRateChangedMessage(recipientId) {
                 type: "web_url",
                 url: "https://tw.yahoo.com",
                 title: "Create a New Transaction"
-              // }, {
-              //   type: "postback",
-              //   title: "Call Postback",
-              //   payload: "Payload for first bubble",
-            // }, {
-            //   type: "postback",
-            //   title: "Call Postback",
-            //   payload: "Payload for first bubble",
+            }],
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendKycRejectedMessage(recipientId, title, message) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: title,
+            subtitle: message,
+            item_url: "https://www.google.com.tw",
+            image_url: SERVER_URL + "/assets/oneMoreStep.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://tw.yahoo.com",
+              title: "Upload Again"
+            }],
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: title,
+            subtitle: message,
+            item_url: "https://www.google.com.tw",
+            image_url: SERVER_URL + "/assets/transactionDetail.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://tw.yahoo.com",
+              title: "Detail"
             }],
           }]
         }
