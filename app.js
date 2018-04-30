@@ -425,6 +425,7 @@ function receivedPostback(event) {
       default:
         sendTextMessage(senderID, messageText);
     }
+  }
 }
 
 /*
