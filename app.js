@@ -958,15 +958,6 @@ function sendPayoutListMessage(recipientId) {
                 type: "web_url",
                 url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
                 title: "Make a Transaction"
-            },{
-              title: "Receives via Cash Delivery",
-              subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
-              item_url: "https://www.google.com.tw",
-              image_url: SERVER_URL + "/assets/cash_delivery.png",
-              buttons: [{
-                type: "web_url",
-                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
-                title: "Make a Transaction"
             }],
           }]
         }
