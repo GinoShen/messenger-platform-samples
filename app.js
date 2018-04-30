@@ -345,6 +345,10 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case 'today rate':
+        sendPayoutListMessage(senderID);
+        break;
+
       case 'add menu':
         addPersistentMenu();
         break;
@@ -934,6 +938,46 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
 
   callSendAPI(messageData);
 }
+
+function sendPayoutListMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+              title: "to Bank Accout",
+              subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
+              item_url: "https://emq-demo.pre-stage.club",
+              image_url: SERVER_URL + "/assets/bank_account.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                title: "Make a Transaction"
+            },{
+              title: "Receives via Cash Delivery",
+              subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
+              item_url: "https://www.google.com.tw",
+              image_url: SERVER_URL + "/assets/cash_delivery.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                title: "Make a Transaction"
+            }],
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+
 
 /*
  * Call the Send API. The message data goes in the body. If successful, we'll
