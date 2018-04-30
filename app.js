@@ -98,6 +98,7 @@ app.post('/webhook', function (req, res) {
       var timeOfEvent = pageEntry.time;
 
       // Iterate over each messaging event
+      console.log("pageEntry.messaging: ", pageEntry.messaging);
       pageEntry.messaging.forEach(function(messagingEvent) {
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
@@ -413,7 +414,17 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  sendTextMessage(senderID, "Postback called");
+
+  if (payload) {
+    switch (payload) {
+
+      case 'today rate':
+        sendPayoutListMessage(senderID);
+        break;
+
+      default:
+        sendTextMessage(senderID, messageText);
+    }
 }
 
 /*
