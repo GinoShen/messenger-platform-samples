@@ -959,6 +959,26 @@ function sendPayoutListMessage(recipientId) {
                 url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
                 title: "Make a Transaction"
             }],
+          },{
+              title: "to Cash Delivery",
+              subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
+              item_url: "https://emq-demo.pre-stage.club",
+              image_url: SERVER_URL + "/assets/cash_delivery.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                title: "Make a Transaction"
+            }],
+          },{
+              title: "to Visa",
+              subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
+              item_url: "https://emq-demo.pre-stage.club",
+              image_url: SERVER_URL + "/assets/VISA.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                title: "Make a Transaction"
+            }],
           }]
         }
       }
@@ -967,8 +987,6 @@ function sendPayoutListMessage(recipientId) {
 
   callSendAPI(messageData);
 }
-
-
 
 /*
  * Call the Send API. The message data goes in the body. If successful, we'll
