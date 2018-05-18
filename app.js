@@ -1143,12 +1143,21 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
         if (rateList[corridor.dest_key] != undefined) {
           console.log("rate list with key %s",corridor.dest_key);
+          var rate = parseFloat(corridor.rate);
+          var miniRate = rate<corridor.dest_key.miniRate?rate:corridor.dest_key.miniRate;
+          var maxRate = rate>corridor.dest_key.maxRate?rate:corridor.dest_key.maxRate;
+          rateList[corridor.dest_key] = {"miniRate":miniRate, "maxRate":maxRate}
+
         }else{
           console.log("rate list without key %s",corridor.dest_key);
+          var rate = parseFloat(corridor.rate);
+          var miniRate = rate;
+          var maxRate = rate;
+          rateList[corridor.dest_key] = {"miniRate":miniRate, "maxRate":maxRate}
         }
 
       });
-
+      console.log("rate list "+rateList);
 
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
