@@ -1144,8 +1144,9 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
         if (rateList[corridor.dest_key] != undefined) {
           console.log("rate list with key %s",corridor.dest_key);
           var rate = parseFloat(corridor.rate);
-          var miniRate = rate<corridor.dest_key.miniRate?rate:corridor.dest_key.miniRate;
-          var maxRate = rate>corridor.dest_key.maxRate?rate:corridor.dest_key.maxRate;
+          var miniRate = rate<rateList[corridor.dest_key].miniRate?rate:rateList[corridor.dest_key].miniRate;
+          var maxRate = rate>rateList[corridor.dest_key].maxRate?rate:rateList[corridor.dest_key].maxRate;
+          console.console.log("rate: %f, miniRate: %f, maxRate: %f", rate, miniRate, maxRate);
           rateList[corridor.dest_key] = {"miniRate":miniRate, "maxRate":maxRate};
           console.log("0rate list %j",rateList[corridor.dest_key]);
 
