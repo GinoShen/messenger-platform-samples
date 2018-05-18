@@ -1134,6 +1134,12 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
     console.log("corridor 3");
     if (!error && response.statusCode == 200) {
       console.log("Successfully call corridors %s",body);
+      body.forEach(function(corridor){
+
+        console.log("corridor payout key %s",corridor.dest_key);
+
+      });
+
 
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
