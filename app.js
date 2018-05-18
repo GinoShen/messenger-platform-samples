@@ -348,6 +348,7 @@ function receivedMessage(event) {
 
       case 'today rate':
         sendPayoutListMessage(senderID);
+        callEMQAPIGetCooridor("HKG","PHL");
         break;
 
       case 'add menu':
@@ -865,6 +866,8 @@ function sendRateChangedMessage(recipientId, title, message) {
     recipient: {
       id: recipientId
     },
+    messaging_type: "MESSAGE_TAG",
+    tag:"PAYMENT_UPDATE",
     message: {
       attachment: {
         type: "template",
@@ -898,6 +901,8 @@ function sendKycRejectedMessage(recipientId, title, message) {
     recipient: {
       id: recipientId
     },
+    messaging_type: "MESSAGE_TAG",
+    tag:"PAYMENT_UPDATE",
     message: {
       attachment: {
         type: "template",
@@ -927,6 +932,8 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
     recipient: {
       id: recipientId
     },
+    messaging_type: "MESSAGE_TAG",
+    tag:"PAYMENT_UPDATE",
     message: {
       attachment: {
         type: "template",
@@ -1109,6 +1116,23 @@ function removePersistentMenu(){
         console.log('Error: ', response.body.error)
     }
 })
+}
+
+function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
+  request({
+    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/HKG/PHL',
+    qs: {},
+    method: 'GET',
+    json: {}
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("Successfully call corridors %s",body);
+
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+  });
 }
 
 function setupGetStartedButton(res){
