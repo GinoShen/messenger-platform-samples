@@ -1135,13 +1135,13 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
         console.log("corridor payout key %s",corridor.dest_key);
 
-        if (rateList.has("k")) {
+        if (rateList["k"] != undefined) {
           console.log("rate list with key k");
         }else{
           console.log("rate list without key k");
         }
 
-        if (rateList.has(corridor.dest_key)) {
+        if (rateList[corridor.dest_key] != undefined) {
           console.log("rate list with key %s",corridor.dest_key);
         }else{
           console.log("rate list without key %s",corridor.dest_key);
