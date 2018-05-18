@@ -348,7 +348,12 @@ function receivedMessage(event) {
 
       case 'today rate':
         sendPayoutListMessage(senderID);
+        break;
+
+      case 'php':
+        console.log("corridor 1");
         callEMQAPIGetCooridor("HKG","PHL");
+        console.log("corridor 2");
         break;
 
       case 'add menu':
@@ -1126,6 +1131,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
     json: {}
 
   }, function (error, response, body) {
+    console.log("corridor 3");
     if (!error && response.statusCode == 200) {
       console.log("Successfully call corridors %s",body);
 
