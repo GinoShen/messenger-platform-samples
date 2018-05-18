@@ -351,9 +351,7 @@ function receivedMessage(event) {
         break;
 
       case 'php':
-        console.log("corridor 1");
         callEMQAPIGetCooridor("HKG","PHL");
-        console.log("corridor 2");
         break;
 
       case 'add menu':
@@ -1131,12 +1129,23 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
     json: {}
 
   }, function (error, response, body) {
-    console.log("corridor 3");
     if (!error && response.statusCode == 200) {
-      console.log("Successfully call corridors %s",body);
+      var rateList{"k":"haha"}
       body.forEach(function(corridor){
 
         console.log("corridor payout key %s",corridor.dest_key);
+
+        if (rateList.has("k")) {
+          console.log("rate list with key k");
+        }else{
+          console.log("rate list without key k");
+        }
+
+        if (rateList.has(corridor.dest_key)) {
+          console.log("rate list with key %s",corridor.dest_key);
+        }else{
+          console.log("rate list without key %s",corridor.dest_key);
+        }
 
       });
 
