@@ -1157,7 +1157,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
         }
 
       });
-      console.log("rate list "+rateList);
+      console.log("rate list "+rateList.toString);
 
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
