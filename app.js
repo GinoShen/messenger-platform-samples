@@ -1130,7 +1130,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
       console.log("Successfully call corridors %s",body);
 
     } else {
-      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+      console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
     }
   });
 }
