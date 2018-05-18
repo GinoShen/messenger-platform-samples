@@ -1130,7 +1130,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var rateList{"k":"haha"}
+      var rateList = {"k":"haha"};
       body.forEach(function(corridor){
 
         console.log("corridor payout key %s",corridor.dest_key);
