@@ -1141,9 +1141,31 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
             var list = [{"src_key":corridor.source_key, "rate":corridor.rate}];
             rateList[corridor.dest_key] = list;
         }
-        
+
       });
+
+      var elemetsList = [];
+      Object.keys(rateList).forEach(function(dest_key){
+        var srcString = "Send via";
+        rateList[dest_key].forEach(function(src)){
+          srcString = srcString +"\n" + src.src_key + ": "+src.rate;
+        };
+        var element = {
+          title: "to " + dest_key,
+          subtitle: srcString,
+          item_url: "https://emq-demo.pre-stage.club",
+          image_url: SERVER_URL + "/assets/bank_account.png",
+          buttons: [{
+            type: "web_url",
+            url: "https://emq-demo.pre-stage.club/",
+            title: "Make a Transaction"
+          }]
+        }
+        elemetsList.push(element);
+      };
+
       console.log("rate list %j",rateList);
+      console.log("element list %j",elemetsList);
 
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
