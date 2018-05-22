@@ -1144,8 +1144,8 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
       });
 
       var elemetsList = [];
-      Object.keys(rateList).forEach(function(dest_key){
-        var srcString = "Send via" + rateList[dest_key];
+      Object.keys(rateDict).forEach(function(dest_key){
+        var srcString = "Send via" + rateDict[dest_key];
         var element = {
           title: "to " + dest_key,
           subtitle: srcString,
