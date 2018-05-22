@@ -1149,7 +1149,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
         var srcString = "Send via";
         rateList[dest_key].forEach(function(src){
           srcString = srcString +"\n" + src.src_key + ": "+src.rate;
-        };
+        });
         var element = {
           title: "to " + dest_key,
           subtitle: srcString,
