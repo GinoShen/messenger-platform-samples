@@ -1135,21 +1135,16 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
         console.log("corridor payout key %s",corridor.dest_key);
         if (rateList[corridor.dest_key]) {
-            var list = rateList[corridor.dest_key];
-            list.push({"src_key":corridor.source_key, "rate":corridor.rate});
+          var string = rateList[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
+          rateList[corridor.dest_key] ＝ string;
         }else{
-            var list = [{"src_key":corridor.source_key, "rate":corridor.rate}];
-            rateList[corridor.dest_key] = list;
+          rateList[corridor.dest_key] ＝ corridor.source_key+": "+corridor.rate;;
         }
-
       });
 
       var elemetsList = [];
       Object.keys(rateList).forEach(function(dest_key){
-        var srcString = "Send via";
-        rateList[dest_key].forEach(function(src){
-          srcString = srcString +"\n" + src.src_key + ": "+src.rate;
-        });
+        var srcString = "Send via" + rateList[dest_key];
         var element = {
           title: "to " + dest_key,
           subtitle: srcString,
