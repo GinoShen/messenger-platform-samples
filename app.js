@@ -1162,7 +1162,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
           }]
         }
         elemetsList.push(element);
-      };
+      });
 
       console.log("rate list %j",rateList);
       console.log("element list %j",elemetsList);
