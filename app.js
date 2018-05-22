@@ -1136,9 +1136,10 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
         console.log("corridor payout key %s",corridor.dest_key);
         if (rateDict[corridor.dest_key]) {
           var stringA = rateDict[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
-          rateDict[corridor.dest_key]=stringA;
+          rateDict[corridor.dest_key] = stringA;
         }else{
-          rateDict[corridor.dest_key]＝corridor.source_key+": "+corridor.rate;;
+          var stringA = corridor.source_key+": "+corridor.rate;
+          rateDict[corridor.dest_key] = stringA;
         }
       });
 
