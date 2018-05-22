@@ -1140,7 +1140,7 @@ function removePersistentMenu(){
 })
 }
 
-function callEMQAPIGetCooridor(recipientId,sourceCountry, destinationCountry) {
+function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
   request({
     uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/HKG/PHL',
     qs: {},
@@ -1181,7 +1181,7 @@ function callEMQAPIGetCooridor(recipientId,sourceCountry, destinationCountry) {
 
       console.log("rate list %j",rateDict);
       console.log("element list %j",elemetsList);
-      sendPayoutList(receiptId, elemetsList);
+      sendPayoutList(recipientId, elemetsList);
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
     }
