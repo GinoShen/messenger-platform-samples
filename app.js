@@ -351,7 +351,7 @@ function receivedMessage(event) {
         break;
 
       case 'php':
-        callEMQAPIGetCooridor("HKG","PHL");
+        callEMQAPIGetCooridor(senderID, "HKG","PHL");
         break;
 
       case 'add menu':
@@ -1010,6 +1010,25 @@ function sendPayoutListMessage(recipientId) {
   callSendAPI(messageData);
 }
 
+function sendPayoutList(recipientId, elements) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: elements
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 /*
  * Call the Send API. The message data goes in the body. If successful, we'll
  * get the message id in a response
@@ -1121,7 +1140,7 @@ function removePersistentMenu(){
 })
 }
 
-function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
+function callEMQAPIGetCooridor(recipientId,sourceCountry, destinationCountry) {
   request({
     uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/HKG/PHL',
     qs: {},
@@ -1162,7 +1181,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
       console.log("rate list %j",rateDict);
       console.log("element list %j",elemetsList);
-
+      sendPayoutList(receiptId, elemetsList);
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
     }
