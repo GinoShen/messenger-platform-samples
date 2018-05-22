@@ -1134,8 +1134,14 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
       body.forEach(function(corridor){
 
         console.log("corridor payout key %s",corridor.dest_key);
-        rateList[corridor.dest_key].push({"src_key":corridor.source_key, "rate":corridor.rate});
-
+        if (rateList[corridor.dest_key]) {
+            var list = rateList[corridor.dest_key];
+            list.push({"src_key":corridor.source_key, "rate":corridor.rate});
+        }else{
+            var list = [{"src_key":corridor.source_key, "rate":corridor.rate}];
+            rateList[corridor.dest_key] = list;
+        }
+        
       });
       console.log("rate list %j",rateList);
 
