@@ -1138,7 +1138,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
           var stringA = rateDict[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
           rateDict[corridor.dest_key]=stringA;
         }else{
-          rateDict[corridor.dest_key] ＝ corridor.source_key+": "+corridor.rate;;
+          rateDict[corridor.dest_key]＝corridor.source_key+": "+corridor.rate;;
         }
       });
 
