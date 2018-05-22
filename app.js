@@ -1130,34 +1130,11 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var rateList = {"k":"haha"};
+      var rateList = {};
       body.forEach(function(corridor){
 
         console.log("corridor payout key %s",corridor.dest_key);
-
-        if (rateList["k"] != undefined) {
-          console.log("rate list with key k");
-        }else{
-          console.log("rate list without key k");
-        }
-
-        if (rateList[corridor.dest_key] != undefined) {
-          console.log("rate list with key %s",corridor.dest_key);
-          var rate = parseFloat(corridor.rate);
-          var miniRate = rate<rateList[corridor.dest_key].miniRate?rate:rateList[corridor.dest_key].miniRate;
-          var maxRate = rate>rateList[corridor.dest_key].maxRate?rate:rateList[corridor.dest_key].maxRate;
-          console.log("rate: %f, miniRate: %f, maxRate: %f", rate, miniRate, maxRate);
-          rateList[corridor.dest_key] = {"miniRate":miniRate, "maxRate":maxRate};
-          console.log("0rate list %j",rateList[corridor.dest_key]);
-
-        }else{
-          console.log("rate list without key %s",corridor.dest_key);
-          var rate = parseFloat(corridor.rate);
-          var miniRate = rate;
-          var maxRate = rate;
-          rateList[corridor.dest_key] = {"miniRate":miniRate, "maxRate":maxRate};
-          console.log("1rate list %j",rateList[corridor.dest_key]);
-        }
+        rateList[corridor.dest_key] = {"src_key":source_key.dest_key, "rate":corridor.rate};
 
       });
       console.log("rate list %j",rateList);
