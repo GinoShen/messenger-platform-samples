@@ -1130,15 +1130,15 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
 
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var rateList = {};
+      var rateDict = {};
       body.forEach(function(corridor){
 
         console.log("corridor payout key %s",corridor.dest_key);
-        if (rateList[corridor.dest_key]) {
-          var string = rateList[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
-          rateList[corridor.dest_key] ＝ string;
+        if (rateDict[corridor.dest_key]) {
+          var string = rateDict[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
+          rateDict[corridor.dest_key] ＝ string;
         }else{
-          rateList[corridor.dest_key] ＝ corridor.source_key+": "+corridor.rate;;
+          rateDict[corridor.dest_key] ＝ corridor.source_key+": "+corridor.rate;;
         }
       });
 
@@ -1159,7 +1159,7 @@ function callEMQAPIGetCooridor(sourceCountry, destinationCountry) {
         elemetsList.push(element);
       });
 
-      console.log("rate list %j",rateList);
+      console.log("rate list %j",rateDict);
       console.log("element list %j",elemetsList);
 
     } else {
