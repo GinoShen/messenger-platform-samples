@@ -935,8 +935,8 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
     recipient: {
       id: recipientId
     },
-    messaging_type: "MESSAGE_TAG",
-    tag:"PAYMENT_UPDATE",
+    // messaging_type: "MESSAGE_TAG",
+    // tag:"PAYMENT_UPDATE",
     message: {
       attachment: {
         type: "template",
