@@ -191,7 +191,7 @@ app.post('/sendMessageFromCore', function (req, res) {
  */
 function verifyRequestSignature(req, res, buf) {
   var signature = req.headers["x-hub-signature"];
-
+  console.log("MY APP SECRET IS: ", process.env.APP_SECRET);
   if (!signature) {
     // For testing, let's log an error. In production, you should throw an
     // error.
