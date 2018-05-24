@@ -191,7 +191,6 @@ app.post('/sendMessageFromCore', function (req, res) {
  */
 function verifyRequestSignature(req, res, buf) {
   var signature = req.headers["x-hub-signature"];
-  console.log("MY APP SECRET IS: ", process.env.APP_SECRET);
   if (!signature) {
     // For testing, let's log an error. In production, you should throw an
     // error.
@@ -1214,6 +1213,21 @@ function setupGetStartedButton(res){
          }
      });
  }
+
+ // function getTypeName(country, type){
+ //   if (country == "PHL") {
+ //     if (type == "emq_partner_cebuana:cash_pickup") {
+ //       return "";
+ //     }else if(type == "emq_partner_cebuana:bank_account"){
+ //       return "";
+ //     }else if(type == "emq_partner_palawan:cash_pickup"){
+ //       return "";
+ //     }else if(type == "emq_partner_gcash:ewallet"){
+ //       return "";
+ //     }
+ //   }
+ //
+ // }
 
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid
