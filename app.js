@@ -1214,21 +1214,162 @@ function setupGetStartedButton(res){
      });
  }
 
- // function getTypeName(country, type){
- //   if (country == "PHL") {
- //     if (type == "emq_partner_cebuana:cash_pickup") {
- //       return "";
- //     }else if(type == "emq_partner_cebuana:bank_account"){
- //       return "";
- //     }else if(type == "emq_partner_palawan:cash_pickup"){
- //       return "";
- //     }else if(type == "emq_partner_gcash:ewallet"){
- //       return "";
- //     }
- //   }
- //
- // }
+ function stringMapping(key) {
+   if (key == "payment_method_ewallet_ind_emq_partner_paytm") {
+     return "Paytm Payments Bank Account";
+   }else if(key == "payment_method_bank_account"){
+     return "Bank Account";
+   }else if(key == "payment_method_bank"){
+     return "Bank Account";
+   }else if(key == "payment_method_bank_name_hdbank"){
+     return "HDBank";
+   }else if(key == "payment_method_cash_delivery"){
+     return "Cash Delivery";
+   }else if(key == "payment_method_cash_delivery_vnm_agent_name"){
+     return "HDBank";
+   }else if(key == "payment_method_cash_delivery_vnm_agent_name_emq_bank_hdb"){
+     return "HDBank";
+   }else if(key == "payment_method_cash_payin"){
+     return "Cash Pay-in";
+   }else if(key == "payment_method_cash_pickup"){
+     return "Cash Pickup";
+   }else if(key == "payment_method_cash_pickup_agency_cebuana"){
+     return "Cebuana Lhuillier";
+   }else if(key == "payment_method_cash_pickup_agent_finnet"){
+     return "Delima remittance service";
+   }else if(key == "payment_method_cash_pickup_idn_agent_name"){
+     return "Delima remittance service";
+   }else if(key == "payment_method_cash_pickup_idn_agent_name_emq_partner_finnet"){
+     return "Delima remittance service";
+   }else if(key == "payment_method_cash_pickup_phl_agent_name"){
+     return "Cebuana Lhuillier";
+   }else if(key == "payment_method_cash_pickup_phl_agent_name_emq_partner_cebuana"){
+     return "Cebuana Lhuillier";
+   }else if(key == "payment_method_cash_pickup_phl_agent_name_emq_partner_palawan"){
+     return "Palawan";
+   }else if(key == "payment_method_cash_pickup_vnm_agent_name"){
+     return "HDBank";
+   }else if(key == "payment_method_cash_pickup_vnm_agent_name_emq_bank_hdb"){
+     return "HDBank";
+   }else if(key == "payment_method_circlek"){
+     return "Circle K";
+   }else if(key == "payment_method_e_wallet"){
+     return "E-Wallet";
+   }else if(key == "payment_method_e_wallet_service_alipay"){
+     return "Alipay";
+   }else if(key == "payment_method_ewallet"){
+     return "E-Wallet";
+   }else if(key == "payment_method_ewallet_ind_agent_name_emq_partner_paytm"){
+     return "Paytm Payments Bank";
+   }else if(key == "payment_method_ewallet_phl_agent_name"){
+     return "GCash";
+   }else if(key == "payment_method_ewallet_phl_agent_name_emq_partner_gcash"){
+     return "GCash";
+   }else if(key == "payment_method_jetco"){
+     return "JET PAYMENT";
+   }else if(key == "payment_method_local_bank_account"){
+     return "HDBank Account";
+   }else if(key == "payment_method_local_bank_account_vnm_agent_name"){
+     return "HDBank";
+   }else if(key == "payment_method_local_bank_account_vnm_agent_name_emq_bank_hdb"){
+     return "HDBank";
+   }else if(key == "payment_method_visa"){
+     return "Visa";
+   }else if(key == "payment_method_visa_phl_agent_name"){
+     return "Visa";
+   }else if(key == "payment_method_visa_phl_agent_name_emq_partner_visa"){
+     return "Visa";
+   }
+   return "";
+ }
 
+ function accountMethodWithType(type, country, partner)
+  {
+    var key1 = "payment_method_"+type+"_"+country.toLowerCase()+"_agent_name_"+partner;
+    var string = stringMapping(key1);
+    if (string.length>0) {
+      return string;
+    }else{
+      return "";
+    }
+
+  }
+
+  function paymentTypeToName(type, country, partner)
+  {
+      var key1 = "payment_method_"+type+"_"+country+"_"partner;
+      var key2 = "payment_method_"+type;
+
+      if (key1!=stringMapping(key1)) {
+          return stringMapping(key1);
+      }else if (type == "cash_payin") {
+          return stringMapping("payment_method_cash_payin");
+
+      }else if(type == "circlek"){
+          return stringMapping("payment_method_circlek");
+
+      }else if(type == "cash-payin") {
+          return stringMapping("payment_method_cash_payin");
+
+      }else if (type == "jetco-hkg") {
+          return stringMapping("payment_method_jetco");
+
+      }else if (type == "cash_pickup") {
+          return stringMapping("payment_method_cash_pickup");
+      }else if (type == "e_wallet") {
+          return stringMapping("payment_method_e_wallet");
+      }else if (type == "ewallet") {
+          return stringMapping("payment_method_e_wallet");
+      }else if (type == "cash_delivery") {
+          return stringMapping("payment_method_cash_delivery");
+      }else if(key2 !=stringMapping(key2,)){
+          return stringMapping(key2);
+      }else{
+          return type;
+      }
+
+  }
+
+ function paymentTypeAndPatnerToName(type, country, partner)
+  {
+      if (type == "cash_pickup") {
+          if (partner.length == 0) {
+              return stringMapping("payment_method_cash_pickup");
+          }else{
+              var p = accountMethodWithType(type, country, partner);
+              if (p.length == 0){
+                  return stringMapping("payment_method_cash_pickup");
+              }else{
+                  return stringMapping("payment_method_cash_pickup") + "("+p+")";
+              }
+          }
+      }else if (type == "e_wallet") {
+          if (partner.length == 0) {
+              return stringMapping("payment_method_e_wallet");
+          }else{
+            var p = accountMethodWithType(type, country, partner);
+            if (p.length == 0){
+                return stringMapping(@"payment_method_e_wallet", @"");
+            }else{
+                return stringMapping("payment_method_e_wallet") + "("+p+")";
+            }
+          }
+      }else if (type == "cash_delivery"){
+          if (partner.length == 0) {
+              return stringMapping("payment_method_cash_delivery");
+          }else{
+            var p = accountMethodWithType(type, country, partner);
+            if (p.length == 0){
+                return stringMapping(@"payment_method_cash_delivery", @"");
+            }else{
+                return stringMapping("payment_method_cash_delivery") + "("+p+")";
+            }
+          }
+      }else{
+          return paymentTypeToName(type, country, partner);
+      }
+
+  }
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid
 // certificate authority.
