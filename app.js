@@ -467,7 +467,7 @@ function receivedPostback(event) {
     switch (payload) {
 
       case 'today rate':
-        sendPayoutListMessage(senderID);
+        sendHKRateQuickReply(senderID);
         break;
 
       default:
