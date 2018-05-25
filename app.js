@@ -1349,7 +1349,7 @@ function setupGetStartedButton(res){
           }else{
             var p = accountMethodWithType(type, country, partner);
             if (p.length == 0){
-                return stringMapping(@"payment_method_e_wallet");
+                return stringMapping("payment_method_e_wallet");
             }else{
                 return stringMapping("payment_method_e_wallet") + "("+p+")";
             }
@@ -1360,7 +1360,7 @@ function setupGetStartedButton(res){
           }else{
             var p = accountMethodWithType(type, country, partner);
             if (p.length == 0){
-                return stringMapping(@"payment_method_cash_delivery");
+                return stringMapping("payment_method_cash_delivery");
             }else{
                 return stringMapping("payment_method_cash_delivery") + "("+p+")";
             }
