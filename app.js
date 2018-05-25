@@ -350,19 +350,23 @@ function receivedMessage(event) {
         break;
 
       case 'php':
-        callEMQAPIGetCooridor(senderID, "HKG","PHL");
-        break;
-
       case 'Php':
-        callEMQAPIGetCooridor(senderID, "HKG","PHL");
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "PHP");
         break;
 
       case 'Vnm':
-        callEMQAPIGetCooridor(senderID, "HKG","VNM");
+      case 'vnm':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "");
         break;
 
-      case 'vnm':
-        callEMQAPIGetCooridor(senderID, "HKG","VNM");
+      case 'Vnm-USD':
+      case 'vnm-USD':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "USD");
+        break;
+
+      case 'Vnm-VND':
+      case 'vnm-VND':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "VND");
         break;
 
       case 'add menu':
@@ -1151,7 +1155,7 @@ function removePersistentMenu(){
 })
 }
 
-function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
+function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, destinationCountry, destinationCurrency) {
   request({
     uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/'+sourceCountry.toUpperCase()+'/'+destinationCountry.toUpperCase(),
     qs: {},
@@ -1164,6 +1168,11 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
       var destPayout = {};
       body.forEach(function(corridor){
         var source = paymentTypeAndPatnerToName(corridor.source.type, sourceCountry, "");
+        if (destinationCurrency.length>0) {
+          if (destinationCurrency.toLowerCase()!=corridor.dest.currency.toLowerCase()) {
+            return;
+          }
+        }
         if (rateDict[corridor.dest_key]) {
           var stringA = rateDict[corridor.dest_key]["withRate"]+"\n"+source+": "+corridor.rate;
           var stringB = rateDict[corridor.dest_key]["withoutRate"]+", "+source
@@ -1190,7 +1199,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
         var title = "";
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
-          srcString = "You caould send money from\n" + rateDict[dest_key]["withoutRate"];
+          srcString = "You could send money from\n" + rateDict[dest_key]["withoutRate"];
           title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1:"+rateList[0];
         }else{
           srcString = "Send via\n" + rateDict[dest_key]["withRate"];
