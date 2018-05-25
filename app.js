@@ -1189,11 +1189,14 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
       Object.keys(rateDict).forEach(function(dest_key){
         var srcString = "";
         var d = destPayout[dest_key];
+        var title = "";
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
-          srcString = "Send via\n" + rateDict[dest_key]["withoutRate"]
+          srcString = "Send via\n" + rateDict[dest_key]["withoutRate"];
+          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1:"+rateList[0];
         }else{
-          srcString = "Send via\n" + rateDict[dest_key]["withRate"]
+          srcString = "Send via\n" + rateDict[dest_key]["withRate"];
+          "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
         }
         var imageName = d["type"]+"_"+destinationCountry.toLowerCase()+"_"+d["partner"]+".png";
         console.log("imageName: %s",imageName);
