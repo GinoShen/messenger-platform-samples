@@ -1178,7 +1178,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           destPayout[corridor.dest_key]= {type:corridor.dest.type, partner:corridor.dest.partner, rateList:[corridor.rate]};
         }else{
           var list = destPayout[corridor.dest_key]["rateList"];
-          if (!list.include(corridor.rate)) {
+          if (list.indexOf(corridor.rate)==-1) {
             list.push(corridor.rate)
           }
         }
