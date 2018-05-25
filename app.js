@@ -1183,6 +1183,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
             list.push(corridor.rate)
           }
         }
+        console.log("rateDict %j",rateDict);
 
       });
 
