@@ -1153,7 +1153,7 @@ function removePersistentMenu(){
 
 function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
   request({
-    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/HKG/PHL',
+    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/'+sourceCountry.toUppercase()+'/'+destinationCountry.toUppercase(),
     qs: {},
     method: 'GET',
     json: {}
@@ -1171,7 +1171,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }else{
           var stringA = source+": "+corridor.rate;
-          var stringB = source
+          var stringB = source;
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }
         if (!destPayout[corridor.dest_key]) {
