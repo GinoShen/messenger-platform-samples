@@ -1176,7 +1176,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           title: "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]),
           subtitle: srcString,
           item_url: "https://emq-demo.pre-stage.club",
-          image_url: SERVER_URL + "/assets/"+imageName,
+          image_url: SERVER_URL + "assets/"+imageName,
           buttons: [{
             type: "web_url",
             url: "https://emq-demo.pre-stage.club/",
