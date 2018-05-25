@@ -284,24 +284,24 @@ function receivedMessage(event) {
     var quickReplyPayload = quickReply.payload;
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
-    if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_PHL_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_CHN_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "CHN", "");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IND_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IND", "");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IDN_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IDN", "");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_JPN_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "JPN", "");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_USD_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "USD");
-    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_VND_FX) {
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "VND");
-    }
-
-
-    return;
+    // if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_PHL_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_CHN_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "CHN", "");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IND_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IND", "");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IDN_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IDN", "");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_JPN_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "JPN", "");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_USD_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "USD");
+    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_VND_FX) {
+    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "VND");
+    // }
+    //
+    //
+    // return;
   }
 
   if (messageText) {
