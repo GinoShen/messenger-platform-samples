@@ -284,8 +284,23 @@ function receivedMessage(event) {
     var quickReplyPayload = quickReply.payload;
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
+    if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_PHL_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_CHN_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "CHN", "");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IND_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IND", "");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IDN_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IDN", "");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_JPN_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "JPN", "");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_USD_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "USD");
+    }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_VND_FX) {
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "VND");
+    }
 
-    sendTextMessage(senderID, "Quick reply tapped");
+
     return;
   }
 
@@ -348,7 +363,7 @@ function receivedMessage(event) {
         break;
 
       case 'today rate':
-        sendPayoutListMessage(senderID);
+        sendHKRateQuickReply(senderID);
         break;
 
       case 'phl':
@@ -806,6 +821,56 @@ function sendQuickReply(recipientId) {
           "content_type":"text",
           "title":"Drama",
           "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+        }
+      ]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendHKRateQuickReply(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "Where would like to send money to?",
+      quick_replies: [
+        {
+          "content_type":"text",
+          "title":"PHL",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_PHL_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"IDN",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IDN_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"VNM-VND",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_VND_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"VNM-USD",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_USD_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"CHN",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_CHN_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"JPN",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_JPN_FX"
+        },
+        {
+          "content_type":"text",
+          "title":"IND",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IND_FX"
         }
       ]
     }
