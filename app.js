@@ -1168,11 +1168,11 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
         if (rateDict[corridor.dest_key]) {
           var stringA = rateDict[corridor.dest_key]+"\n"+source+": "+corridor.rate;
           var stringB = rateDict[corridor.dest_key]+", "+source
-          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB}};
+          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }else{
           var stringA = source+": "+corridor.rate;
           var stringB = source
-          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB}};
+          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }
         if (!destPayout[corridor.dest_key]) {
           destPayout[corridor.dest_key]= {type:corridor.dest.type, partner:corridor.dest.partner, rateList:[corridor.rate]};
