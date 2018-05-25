@@ -1171,7 +1171,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }else{
           var stringA = source+": "+corridor.rate;
-          var stringB = source..toString();
+          var stringB = source.toString();
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }
         if (!destPayout[corridor.dest_key]) {
@@ -1192,7 +1192,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
         var title = "";
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
-          srcString = "Send via\n" + rateDict[dest_key]["withoutRate"];
+          srcString = "You caould send money from\n" + rateDict[dest_key]["withoutRate"];
           title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1:"+rateList[0];
         }else{
           srcString = "Send via\n" + rateDict[dest_key]["withRate"];
