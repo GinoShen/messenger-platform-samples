@@ -292,7 +292,7 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-    switch (messageText) {
+    switch (messageText.toLowerCase()) {
       case 'image':
         sendImageMessage(senderID);
         break;
@@ -349,23 +349,35 @@ function receivedMessage(event) {
         sendPayoutListMessage(senderID);
         break;
 
-      case 'php':
-      case 'Php':
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "PHP");
+      case 'phl':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "PHP");
         break;
 
-      case 'Vnm':
+      case 'chn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "CNY");
+        break;
+
+      case 'ind':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "INR");
+        break;
+
+      case 'jpn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "JPY");
+        break;
+
+      case 'idn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "IDR");
+        break;
+
       case 'vnm':
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "");
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD",messageText.toUpperCase(), "");
         break;
 
-      case 'Vnm-USD':
-      case 'vnm-USD':
+      case 'vnm-usd':
         callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "USD");
         break;
 
-      case 'Vnm-VND':
-      case 'vnm-VND':
+      case 'vnm-vnd':
         callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "VND");
         break;
 
@@ -1200,7 +1212,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
           srcString = "You could send money from\n" + rateDict[dest_key]["withoutRate"];
-          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1"+sourceCurrency+":"+rateList[0]+destinationCurrency;
+          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1 "+sourceCurrency+":"+rateList[0]+" "+destinationCurrency;
         }else{
           srcString = "Send via\n" + rateDict[dest_key]["withRate"];
           "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
