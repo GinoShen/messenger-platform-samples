@@ -1164,11 +1164,9 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
       var destPayout = {};
       body.forEach(function(corridor){
         var source = paymentTypeAndPatnerToName(corridor.source.type, sourceCountry, "");
-        console.log("corridor payout key %s",corridor.dest_key);
-        console.log("source %s",source);
         if (rateDict[corridor.dest_key]) {
-          var stringA = rateDict[corridor.dest_key]+"\n"+source+": "+corridor.rate;
-          var stringB = rateDict[corridor.dest_key]+", "+source
+          var stringA = rateDict[corridor.dest_key]["withRate"]+"\n"+source+": "+corridor.rate;
+          var stringB = rateDict[corridor.dest_key]["withoutRate"]+", "+source
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }else{
           var stringA = source+": "+corridor.rate;
@@ -1183,8 +1181,6 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
             list.push(corridor.rate)
           }
         }
-        console.log("rateDict %j",rateDict);
-
       });
 
       var elemetsList = [];
@@ -1201,7 +1197,6 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
         }
         var imageName = d["type"]+"_"+destinationCountry.toLowerCase()+"_"+d["partner"]+".png";
-        console.log("imageName: %s",imageName);
         var element = {
           title: title,
           subtitle: srcString,
