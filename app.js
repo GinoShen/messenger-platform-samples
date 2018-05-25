@@ -1200,7 +1200,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
           srcString = "You could send money from\n" + rateDict[dest_key]["withoutRate"];
-          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1:"+rateList[0];
+          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n 1"+sourceCurrency+":"+rateList[0]+destinationCurrency;
         }else{
           srcString = "Send via\n" + rateDict[dest_key]["withRate"];
           "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
@@ -1221,8 +1221,6 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
         elemetsList.push(element);
       });
 
-      console.log("rate list %j",rateDict);
-      console.log("element list %j",elemetsList);
       sendPayoutList(recipientId, elemetsList);
     } else {
       console.error("Failed calling corridors API", response.statusCode, response.statusMessage, body.error);
