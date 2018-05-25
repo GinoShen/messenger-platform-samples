@@ -1169,7 +1169,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
       var elemetsList = [];
       Object.keys(rateDict).forEach(function(dest_key){
         var srcString = "Send via" + rateDict[dest_key];
-        var d = destPayout[corridor.dest_key];
+        var d = destPayout[dest_key];
         var element = {
           title: "to " + paymentTypeAndPatnerToName(d[type], destinationCountry, d[partner]),
           subtitle: srcString,
