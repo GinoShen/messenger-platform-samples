@@ -1151,7 +1151,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
       var rateDict = {};
       var destPayout = {};
       body.forEach(function(corridor){
-        var source = paymentTypeAndPatnerToName(corridor.source.source, sourceCountry, "");
+        var source = paymentTypeAndPatnerToName(corridor.source.type, sourceCountry, "");
         console.log("corridor payout key %s",corridor.dest_key);
         if (rateDict[corridor.dest_key]) {
           var stringA = rateDict[corridor.dest_key]+"\n"+source+": "+corridor.rate;
@@ -1168,7 +1168,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
 
       var elemetsList = [];
       Object.keys(rateDict).forEach(function(dest_key){
-        var srcString = "Send via" + rateDict[dest_key];
+        var srcString = "Send via " + rateDict[dest_key];
         var d = destPayout[dest_key];
         var element = {
           title: "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]),
