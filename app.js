@@ -1171,7 +1171,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }else{
           var stringA = source+": "+corridor.rate;
-          var stringB = source;
+          var stringB = source..toString();
           rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB};
         }
         if (!destPayout[corridor.dest_key]) {
