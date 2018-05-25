@@ -1171,6 +1171,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
         var srcString = "Send via\n" + rateDict[dest_key];
         var d = destPayout[dest_key];
         var imageName = d["type"]+destinationCountry.toLowerCase()+d["partner"]+".png";
+        console.log("imageName: %s",imageName);
         var element = {
           title: "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]),
           subtitle: srcString,
