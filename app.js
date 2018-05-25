@@ -1153,7 +1153,7 @@ function removePersistentMenu(){
 
 function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
   request({
-    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/'+sourceCountry.toUppercase()+'/'+destinationCountry.toUppercase(),
+    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/'+sourceCountry.toUpperCase()+'/'+destinationCountry.toUpperCase(),
     qs: {},
     method: 'GET',
     json: {}
