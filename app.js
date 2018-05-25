@@ -62,6 +62,8 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
  *
  */
 app.get('/webhook', function(req, res) {
+  console.log("hahahahaha webhook GET");
+
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     console.log("Validating webhook");
@@ -88,7 +90,7 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
-  console.log("hahahahaha webhook");
+  console.log("hahahahaha webhook POST");
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
