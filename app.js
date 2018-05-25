@@ -1149,23 +1149,29 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var rateDict = {};
+      var destPayout = {};
       body.forEach(function(corridor){
-
+        var source = paymentTypeAndPatnerToName(corridor.source.source, sourceCountry, "");
         console.log("corridor payout key %s",corridor.dest_key);
         if (rateDict[corridor.dest_key]) {
-          var stringA = rateDict[corridor.dest_key]+"\n"+corridor.source_key+": "+corridor.rate;
+          var stringA = rateDict[corridor.dest_key]+"\n"+source+": "+corridor.rate;
           rateDict[corridor.dest_key] = stringA;
         }else{
-          var stringA = corridor.source_key+": "+corridor.rate;
+          var stringA = source+": "+corridor.rate;
           rateDict[corridor.dest_key] = stringA;
         }
+        if (!destPayout[corridor.dest_key]) {
+          destPayout[corridor.dest_key]= {type:corridor.dest.type, partner:corridor.dest.partner};
+        }
+
       });
 
       var elemetsList = [];
       Object.keys(rateDict).forEach(function(dest_key){
         var srcString = "Send via" + rateDict[dest_key];
+        var d = destPayout[corridor.dest_key];
         var element = {
-          title: "to " + dest_key,
+          title: "to " + paymentTypeAndPatnerToName(d[type], destinationCountry, d[partner]),
           subtitle: srcString,
           item_url: "https://emq-demo.pre-stage.club",
           image_url: SERVER_URL + "/assets/bank_account.png",
