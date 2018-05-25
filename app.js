@@ -1280,7 +1280,7 @@ function setupGetStartedButton(res){
    }else if(key == "payment_method_visa_phl_agent_name_emq_partner_visa"){
      return "Visa";
    }
-   return "";
+   return key;
  }
 
  function accountMethodWithType(type, country, partner)
