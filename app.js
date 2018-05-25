@@ -353,6 +353,18 @@ function receivedMessage(event) {
         callEMQAPIGetCooridor(senderID, "HKG","PHL");
         break;
 
+      case 'Php':
+        callEMQAPIGetCooridor(senderID, "HKG","PHL");
+        break;
+
+      case 'Vnm':
+        callEMQAPIGetCooridor(senderID, "HKG","VNM");
+        break;
+
+      case 'vnm':
+        callEMQAPIGetCooridor(senderID, "HKG","VNM");
+        break;
+
       case 'add menu':
         addPersistentMenu();
         break;
@@ -1155,21 +1167,34 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
         console.log("corridor payout key %s",corridor.dest_key);
         if (rateDict[corridor.dest_key]) {
           var stringA = rateDict[corridor.dest_key]+"\n"+source+": "+corridor.rate;
-          rateDict[corridor.dest_key] = stringA;
+          var stringB = rateDict[corridor.dest_key]+", "+source
+          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB}};
         }else{
           var stringA = source+": "+corridor.rate;
-          rateDict[corridor.dest_key] = stringA;
+          var stringB = source
+          rateDict[corridor.dest_key] = {withRate:stringA, withoutRate: stringB}};
         }
         if (!destPayout[corridor.dest_key]) {
-          destPayout[corridor.dest_key]= {type:corridor.dest.type, partner:corridor.dest.partner};
+          destPayout[corridor.dest_key]= {type:corridor.dest.type, partner:corridor.dest.partner, rateList:[corridor.rate]};
+        }else{
+          var list = destPayout[corridor.dest_key]["rateList"];
+          if (!list.include(corridor.rate)) {
+            list.push(corridor.rate)
+          }
         }
 
       });
 
       var elemetsList = [];
       Object.keys(rateDict).forEach(function(dest_key){
-        var srcString = "Send via\n" + rateDict[dest_key];
+        var srcString = "";
         var d = destPayout[dest_key];
+        var rateList = destPayout[dest_key]["rateList"];
+        if (rateList.length == 1) {
+          srcString = "Send via\n" + rateDict[dest_key]["withoutRate"]
+        }else{
+          srcString = "Send via\n" + rateDict[dest_key]["withRate"]
+        }
         var imageName = d["type"]+"_"+destinationCountry.toLowerCase()+"_"+d["partner"]+".png";
         console.log("imageName: %s",imageName);
         var element = {
