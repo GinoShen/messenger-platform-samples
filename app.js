@@ -1168,13 +1168,14 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, destinationCountry) {
 
       var elemetsList = [];
       Object.keys(rateDict).forEach(function(dest_key){
-        var srcString = "Send via " + rateDict[dest_key];
+        var srcString = "Send via\n" + rateDict[dest_key];
         var d = destPayout[dest_key];
+        var imageName = d["type"]+destinationCountry.toLowerCase()+d["partner"]+".png";
         var element = {
           title: "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]),
           subtitle: srcString,
           item_url: "https://emq-demo.pre-stage.club",
-          image_url: SERVER_URL + "/assets/bank_account.png",
+          image_url: SERVER_URL + "/assets/"+imageName,
           buttons: [{
             type: "web_url",
             url: "https://emq-demo.pre-stage.club/",
@@ -1350,6 +1351,17 @@ function setupGetStartedButton(res){
               }
           }
       }else if (type == "e_wallet") {
+          if (partner.length == 0) {
+              return stringMapping("payment_method_e_wallet");
+          }else{
+            var p = accountMethodWithType(type, country, partner);
+            if (p.length == 0){
+                return stringMapping("payment_method_e_wallet");
+            }else{
+                return stringMapping("payment_method_e_wallet") + "("+p+")";
+            }
+          }
+      }else if (type == "ewallet") {
           if (partner.length == 0) {
               return stringMapping("payment_method_e_wallet");
           }else{
