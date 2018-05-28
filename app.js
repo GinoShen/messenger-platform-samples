@@ -1279,8 +1279,8 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
         var title = "";
         var rateList = destPayout[dest_key]["rateList"];
         if (rateList.length == 1) {
-          srcString = "You could send money via\n" + rateDict[dest_key]["withoutRate"];
-          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]) +"\n1 "+sourceCurrency+":"+rateList[0]+" "+destinationCurrency;
+          srcString = "1 "+sourceCurrency+":"+rateList[0]+" "+destinationCurrency+"\nYou could send money via\n" + rateDict[dest_key]["withoutRate"];
+          title = "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
         }else{
           srcString = "Send via\n" + rateDict[dest_key]["withRate"];
           "to " + paymentTypeAndPatnerToName(d["type"], destinationCountry, d["partner"]);
