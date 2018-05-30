@@ -1294,6 +1294,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
           image_url: SERVER_URL + "assets/"+imageName,
           buttons: [{
             type: "web_url",
+            messenger_extensions: true,
             url: "https://emq-demo.pre-stage.club?destinationCountry="+destinationCountry+"&destinationCurrency="+destinationCurrency,
             title: "Create a Transaction"
           }]
