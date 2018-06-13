@@ -19,7 +19,7 @@ const
   request = require('request');
 
 var app = express();
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 80);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
@@ -62,8 +62,6 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
  *
  */
 app.get('/webhook', function(req, res) {
-  console.log("hahahahaha webhook GET");
-
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     console.log("Validating webhook");
@@ -181,34 +179,6 @@ app.post('/sendMessageFromCore', function (req, res) {
 
     default:
   }
-  res.sendStatus(200);
-});
-
-app.post('/sendTest', function (req, res) {
-  var data = req.body;
-  console.log(req.body);
-  console.log(data);
-  // Make sure this is a page subscription
-  console.log(data.facebookId)
-  var recipientId = data.facebookId;
-  var type = data.type;
-  var title = data.title;
-  var message = data.message;
-  sendImageMessage(recipientId);
-  // switch (type) {
-  //   case 'transaction status updated':
-  //   sendTrasactionStatusUpdatedMessage(recipientId, title, message)
-  //     break;
-  //   case 'kyc reject':
-  //   sendKycRejectedMessage(recipientId, title, message)
-  //     break;
-  //
-  //   case 'rate change':
-  //   sendRateChangedMessage(recipientId, title, message)
-  //     break;
-  //
-  //   default:
-  // }
   res.sendStatus(200);
 });
 
