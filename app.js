@@ -166,9 +166,10 @@ app.post('/sendMessageFromCore', function (req, res) {
   var type = data.type;
   var title = data.title;
   var message = data.message;
+  var transferId = data.transfer.id;
   switch (type) {
     case 'transaction_status_updated':
-    sendTrasactionStatusUpdatedMessage(recipientId, title, message)
+    sendTrasactionStatusUpdatedMessage(recipientId, title, message, transferId)
       break;
     case 'kyc_reject':
     sendKycRejectedMessage(recipientId, title, message)
@@ -1052,7 +1053,7 @@ function sendKycRejectedMessage(recipientId, title, message) {
   callSendAPI(messageData);
 }
 
-function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
+function sendTrasactionStatusUpdatedMessage(recipientId, title, message, transferId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -1072,7 +1073,7 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: "https://emq-demo.pre-stage.club/Transaction?id=69824db0-327f-4d36-ade3-7f934bb2b871",
+              url: "https://emq-demo.pre-stage.club/Transaction?id="+transferId,
               title: "DETAIL"
             }]
           }]
