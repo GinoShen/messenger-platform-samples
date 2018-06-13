@@ -183,6 +183,34 @@ app.post('/sendMessageFromCore', function (req, res) {
   res.sendStatus(200);
 });
 
+app.post('/sendTest', function (req, res) {
+  var data = req.body;
+  console.log(req.body);
+  console.log(data);
+  // Make sure this is a page subscription
+  console.log(data.facebookId)
+  var recipientId = data.facebookId;
+  var type = data.type;
+  var title = data.title;
+  var message = data.message;
+  sendImageMessage(recipientId);
+  // switch (type) {
+  //   case 'transaction status updated':
+  //   sendTrasactionStatusUpdatedMessage(recipientId, title, message)
+  //     break;
+  //   case 'kyc reject':
+  //   sendKycRejectedMessage(recipientId, title, message)
+  //     break;
+  //
+  //   case 'rate change':
+  //   sendRateChangedMessage(recipientId, title, message)
+  //     break;
+  //
+  //   default:
+  // }
+  res.sendStatus(200);
+});
+
 /*
  * Verify that the callback came from Facebook. Using the App Secret from
  * the App Dashboard, we can verify the signature that is sent with each
