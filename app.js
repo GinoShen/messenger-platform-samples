@@ -1067,13 +1067,13 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
           elements: [{
             title: title,
             subtitle: message,
-            item_url: "https://www.google.com.tw",
+            item_url: "http://emq-demo.pre-stage.club",
             image_url: SERVER_URL + "/assets/transactionDetail.png",
             buttons: [{
               type: "web_url",
-              url: "https://tw.yahoo.com",
+              url: "http://emq-demo.pre-stage.club",
               title: "Detail"
-            }],
+            }]
           }]
         }
       }
