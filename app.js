@@ -167,14 +167,14 @@ app.post('/sendMessageFromCore', function (req, res) {
   var title = data.title;
   var message = data.message;
   switch (type) {
-    case 'transaction status updated':
+    case 'transaction_status_updated':
     sendTrasactionStatusUpdatedMessage(recipientId, title, message)
       break;
-    case 'kyc reject':
+    case 'kyc_reject':
     sendKycRejectedMessage(recipientId, title, message)
       break;
 
-    case 'rate change':
+    case 'rate_change':
     sendRateChangedMessage(recipientId, title, message)
       break;
 
@@ -1011,7 +1011,7 @@ function sendRateChangedMessage(recipientId, title, message) {
                 type: "web_url",
                 url: "https://tw.yahoo.com",
                 title: "Create a New Transaction"
-            }],
+            }]
           }]
         }
       }
@@ -1042,7 +1042,7 @@ function sendKycRejectedMessage(recipientId, title, message) {
               type: "web_url",
               url: "https://tw.yahoo.com",
               title: "Upload Again"
-            }],
+            }]
           }]
         }
       }
@@ -1057,8 +1057,8 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
     recipient: {
       id: recipientId
     },
-    // messaging_type: "MESSAGE_TAG",
-    // tag:"PAYMENT_UPDATE",
+    messaging_type: "MESSAGE_TAG",
+    tag:"PAYMENT_UPDATE",
     message: {
       attachment: {
         type: "template",
