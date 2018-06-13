@@ -1071,8 +1071,8 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message) {
             image_url: SERVER_URL + "/assets/transactionDetail.png",
             buttons: [{
               type: "web_url",
-              url: "http://emq-demo.pre-stage.club",
-              title: "Detail"
+              url: "https://emq-demo.pre-stage.club/Transaction?id=69824db0-327f-4d36-ade3-7f934bb2b871",
+              title: "DETAIL"
             }]
           }]
         }
