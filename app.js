@@ -159,8 +159,8 @@ app.post('/sendMessageFromCore', function (req, res) {
   console.log(req.body);
   console.log(data);
   // Make sure this is a page subscription
-  console.log(data.facebookId)
-  var recipientId = data.facebookId;
+  console.log(data.facebook_id)
+  var recipientId = data.facebook_id;
   var type = data.type;
   var title = data.title;
   var message = data.message;
