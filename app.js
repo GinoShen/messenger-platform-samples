@@ -161,7 +161,7 @@ app.post('/sendMessageFromCore', function (req, res) {
   // Make sure this is a page subscription
   console.log(data.facebook_id)
   var recipientId = data.facebook_id;
-  if (!receiptId.length) {
+  if (!recipientId) {
     res.sendStatus(200);
     return;
   }
