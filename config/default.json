@@ -3,5 +3,6 @@
     "pageAccessToken": "EAAO5PZAaoYmMBAPssogQKZA5yrbcnlzOL7XZAjMyqr6XsxGd6ZCYAKIbBblN12Y7sMhysjZCcENbZCbxl4vpbvwTRcN63vvmRZBKcN5BrUIxwcFZAXmw29BUdvEnJTXFn8CQePpDNnPIpbGrZBIVerTmN0AG4hx6xrWuoqhincgvZCeJ6XGNDRAqC6",
     "validationToken": "12345678",
     "serverURL": "https://emq-test.herokuapp.com/",
-    "emqURL": "https://staging-api.emq.com/"
+    "emqAPIURL": "https://staging-api.emq.com/",
+    "emqWebServicURL": "https://emq-demo.pre-stage.club/"
 }

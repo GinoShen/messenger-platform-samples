@@ -55,6 +55,11 @@ const EMQ_API_URL = (process.env.EMQ_API_URL) ?
   (process.env.EMQ_API_URL) :
   config.get('emqAPIURL');
 
+const EMQ_WEB_SERVICE_URL = (process.env.EMQ_WEB_SERVICE_URL) ?
+  (process.env.EMQ_WEB_SERVICE_URL) :
+  config.get('emqWebServicURL');
+
+
 if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   console.error("Missing config values");
   process.exit(1);
@@ -185,7 +190,7 @@ app.post('/sendMessageFromCore', function (req, res) {
       break;
 
     case 'recipient_information_created':
-    sendRateChangedMessage(recipientId, title, message)
+    sendRecipientDataUpdatedMessage(recipientId, title, message, transferId)
       break
 
     default:
@@ -1016,6 +1021,38 @@ function sendKycRejectedMessage(recipientId, title, message) {
   callSendAPI(messageData);
 }
 
+function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    messaging_type: "MESSAGE_TAG",
+    tag:"PAYMENT_UPDATE",
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: title,
+            subtitle: message,
+            item_url: "http://emq-demo.pre-stage.club",
+            image_url: SERVER_URL + "/assets/transactionDetail.png",
+            buttons: [{
+              type: "web_url",
+              messenger_extensions: true,
+              url: EMQ_WEB_SERVICE_URL + "SendMoney_Prompt?reference="+transferId,
+              title: "DETAIL"
+            }]
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 function sendTrasactionStatusUpdatedMessage(recipientId, title, message, transferId) {
   var messageData = {
     recipient: {
@@ -1036,7 +1073,7 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message, transfe
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: "https://emq-demo.pre-stage.club/Transaction?id="+transferId,
+              url: EMQ_WEB_SERVICE_URL+"Transaction?id="+transferId,
               title: "DETAIL"
             }]
           }]
