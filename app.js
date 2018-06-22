@@ -156,19 +156,18 @@ app.get('/sendMessageFromCore', function(req, res) {
 
 app.post('/sendMessageFromCore', function (req, res) {
   var data = req.body;
-  console.log(req.body);
-  console.log(data);
+  // console.log(data);
   // Make sure this is a page subscription
-  console.log(data.facebook_id)
-  var recipientId = data.facebook_id;
-  if (recipientId !== null && recipientId !== '') {
-    res.sendStatus(200);
-    return;
-  }
   var type = data.type;
   var title = data.title;
   var message = data.message;
   var transferId = data.transfer.id;
+  var recipientId = data.facebook_id;
+  if (recipientId !== null && recipientId !== '') {
+    console.log("no recipient id"+transferId)
+    res.sendStatus(200);
+    return;
+  }
   switch (type) {
     case 'transaction_status_updated':
     sendTrasactionStatusUpdatedMessage(recipientId, title, message, transferId)
