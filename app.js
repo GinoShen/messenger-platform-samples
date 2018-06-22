@@ -177,6 +177,10 @@ app.post('/sendMessageFromCore', function (req, res) {
     sendRateChangedMessage(recipientId, title, message)
       break;
 
+    case 'recipient_information_created':
+    sendRateChangedMessage(recipientId, title, message)
+      break
+
     default:
   }
   res.sendStatus(200);
@@ -283,24 +287,6 @@ function receivedMessage(event) {
     var quickReplyPayload = quickReply.payload;
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
-    // if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_PHL_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_CHN_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "CHN", "");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IND_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IND", "");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_IDN_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "IDN", "");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_JPN_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "JPN", "");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_USD_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "USD");
-    // }else if (quickReplyPayload == DEVELOPER_DEFINED_PAYLOAD_FOR_HK_VNM_VND_FX) {
-    //     callEMQAPIGetCooridor(senderID, "HKG", "HKD", "VNM", "VND");
-    // }
-    //
-    //
-    // return;
   }
 
   if (messageText) {
@@ -309,57 +295,57 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText.toLowerCase()) {
-      case 'image':
-        sendImageMessage(senderID);
-        break;
-
-      case 'gif':
-        sendGifMessage(senderID);
-        break;
-
-      case 'audio':
-        sendAudioMessage(senderID);
-        break;
-
-      case 'video':
-        sendVideoMessage(senderID);
-        break;
-
-      case 'file':
-        sendFileMessage(senderID);
-        break;
-
-      case 'button':
-        sendButtonMessage(senderID);
-        break;
-
-      case 'generic':
-        sendGenericMessage(senderID);
-        break;
-
-      case 'receipt':
-        sendReceiptMessage(senderID);
-        break;
+      // case 'image':
+      //   sendImageMessage(senderID);
+      //   break;
+      //
+      // case 'gif':
+      //   sendGifMessage(senderID);
+      //   break;
+      //
+      // case 'audio':
+      //   sendAudioMessage(senderID);
+      //   break;
+      //
+      // case 'video':
+      //   sendVideoMessage(senderID);
+      //   break;
+      //
+      // case 'file':
+      //   sendFileMessage(senderID);
+      //   break;
+      //
+      // case 'button':
+      //   sendButtonMessage(senderID);
+      //   break;
+      //
+      // case 'generic':
+      //   sendGenericMessage(senderID);
+      //   break;
+      //
+      // case 'receipt':
+      //   sendReceiptMessage(senderID);
+      //   break;
 
       case 'quick reply':
         sendQuickReply(senderID);
         break;
 
-      case 'read receipt':
-        sendReadReceipt(senderID);
-        break;
-
-      case 'typing on':
-        sendTypingOn(senderID);
-        break;
-
-      case 'typing off':
-        sendTypingOff(senderID);
-        break;
-
-      case 'account linking':
-        sendAccountLinking(senderID);
-        break;
+      // case 'read receipt':
+      //   sendReadReceipt(senderID);
+      //   break;
+      //
+      // case 'typing on':
+      //   sendTypingOn(senderID);
+      //   break;
+      //
+      // case 'typing off':
+      //   sendTypingOff(senderID);
+      //   break;
+      //
+      // case 'account linking':
+      //   sendAccountLinking(senderID);
+      //   break;
 
       case 'today rate':
         sendHKRateQuickReply(senderID);
@@ -397,13 +383,13 @@ function receivedMessage(event) {
         callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "VND");
         break;
 
-      case 'add menu':
-        addPersistentMenu();
-        break;
-
-      case 'remove menu':
-        removePersistentMenu();
-        break;
+      // case 'add menu':
+      //   addPersistentMenu();
+      //   break;
+      //
+      // case 'remove menu':
+      //   removePersistentMenu();
+      //   break;
 
       default:
         sendTextMessage(senderID, messageText);
