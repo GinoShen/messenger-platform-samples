@@ -156,7 +156,7 @@ app.get('/sendMessageFromCore', function(req, res) {
 
 app.post('/sendMessageFromCore', function (req, res) {
   var data = req.body;
-  // console.log(data);
+  console.log(data);
   // Make sure this is a page subscription
   var type = data.type;
   var title = data.title;
