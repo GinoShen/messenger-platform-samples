@@ -51,6 +51,10 @@ const SERVER_URL = (process.env.SERVER_URL) ?
   (process.env.SERVER_URL) :
   config.get('serverURL');
 
+const EMQ_API_URL = (process.env.EMQ_API_URL) ?
+  (process.env.EMQ_API_URL) :
+  config.get('emqAPIURL');
+
 if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   console.error("Missing config values");
   process.exit(1);
@@ -1226,7 +1230,7 @@ function removePersistentMenu(){
 function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, destinationCountry, destinationCurrency) {
   sendTypingOn(recipientId);
   request({
-    uri: 'https://staging-api.emq.com/api/v4/transfer/corridors/'+sourceCountry.toUpperCase()+'/'+destinationCountry.toUpperCase(),
+    uri: EMQ_API_URL+'api/v4/transfer/corridors/'+sourceCountry.toUpperCase()+'/'+destinationCountry.toUpperCase(),
     qs: {},
     method: 'GET',
     json: {}
