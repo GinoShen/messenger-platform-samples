@@ -151,7 +151,7 @@ app.get('/authorize', function(req, res) {
 
 app.get('/sendMessageFromCore', function(req, res) {
   console.log("Send Message from core");
-  res.sendStatus(200);
+  res.sendStatus(404);
 });
 
 app.post('/sendMessageFromCore', function (req, res) {
@@ -161,6 +161,10 @@ app.post('/sendMessageFromCore', function (req, res) {
   // Make sure this is a page subscription
   console.log(data.facebook_id)
   var recipientId = data.facebook_id;
+  if (!receiptId.length) {
+    res.sendStatus(200);
+    return;
+  }
   var type = data.type;
   var title = data.title;
   var message = data.message;
