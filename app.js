@@ -1037,12 +1037,12 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
             title: title,
             subtitle: message,
             item_url: "http://emq-demo.pre-stage.club",
-            image_url: SERVER_URL + "/assets/transactionDetail.png",
+            image_url: SERVER_URL + "/assets/oneMoreStep.png",
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
               url: EMQ_WEB_SERVICE_URL + "SendMoney_Prompt?reference="+transferId,
-              title: "DETAIL"
+              title: "Submit"
             }]
           }]
         }
