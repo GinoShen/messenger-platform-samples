@@ -194,11 +194,19 @@ app.post('/sendMessageFromCore', function (req, res) {
       break
 
     case 'customer-centric':
-    sendTextMessage(recipientId, title+message)
+    if(title.length>0){
+      sendTextMessage(recipientId, title+" "+message)
+    }else{
+      sendTextMessage(recipientId, title+message)
+    }
       break
 
     default:
+    if(title.length>0){
+      sendTextMessage(recipientId, title+" "+message)
+    }else{
       sendTextMessage(recipientId, title+message)
+    }
       break
   }
   res.sendStatus(200);
