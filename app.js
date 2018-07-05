@@ -170,7 +170,7 @@ app.post('/sendMessageFromCore', function (req, res) {
   var type = data.type;
   var title = data.title;
   var message = data.message;
-  var transferId = data.transfer.id;
+  var transferId = data.transfer?data.transfer.id:"";
   var recipientId = data.facebook_id;
   if (recipientId == undefined || recipientId.length == 0) {
     console.log("no recipient id"+transferId)
