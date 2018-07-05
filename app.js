@@ -193,7 +193,13 @@ app.post('/sendMessageFromCore', function (req, res) {
     sendRecipientDataUpdatedMessage(recipientId, title, message, transferId)
       break
 
+    case 'customer-centric':
+    sendTextMessage(recipientId, title+message)
+      break
+
     default:
+      sendTextMessage(recipientId, title+message)
+      break
   }
   res.sendStatus(200);
 });
