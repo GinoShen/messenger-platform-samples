@@ -180,9 +180,9 @@ app.post('/sendMessageFromCore', function (req, res) {
   }
 
   if (transferId.length>0) {
-    type = transaction_status_updated;
+    type = 'transaction_status_updated';
   }else if(transferRequestId.length>0){
-    type = recipient_information_created;
+    type = 'recipient_information_created';
   }
 
   switch (type) {
