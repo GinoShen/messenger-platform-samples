@@ -171,18 +171,23 @@ app.post('/sendMessageFromCore', function (req, res) {
   var title = data.title;
   var message = data.message;
   var transferId = data.transfer?data.transfer.id:"";
-  var recipientId = data.facebook_id;
+  var transferRequestId = data.transfer_request?data.transfer_request.reference:"";
+  var recipientId = data.messenger_id;
   if (recipientId == undefined || recipientId.length == 0) {
     console.log("no recipient id"+transferId)
     res.sendStatus(200);
     return;
   }
+
+  if (transferId.length>0) {
+    type = transaction_status_updated;
+  }else if(transferRequestId.length>0){
+    type = recipient_information_created;
+  }
+
   switch (type) {
     case 'transaction_status_updated':
     sendTrasactionStatusUpdatedMessage(recipientId, title, message, transferId)
-      break;
-    case 'kyc_reject':
-    sendKycRejectedMessage(recipientId, title, message)
       break;
 
     case 'rate_change':
@@ -190,7 +195,7 @@ app.post('/sendMessageFromCore', function (req, res) {
       break;
 
     case 'recipient_information_created':
-    sendRecipientDataUpdatedMessage(recipientId, title, message, transferId)
+    sendRecipientDataUpdatedMessage(recipientId, title, message, transferRequestId)
       break
 
     case 'customer-centric':
@@ -203,7 +208,7 @@ app.post('/sendMessageFromCore', function (req, res) {
 
     default:
     if(title.length>0){
-      sendTextMessage(recipientId, title+" "+message)
+      sendTextMessage(recipientId, title+"\n"+message)
     }else{
       sendTextMessage(recipientId, title+message)
     }
@@ -1004,37 +1009,6 @@ function sendRateChangedMessage(recipientId, title, message) {
   callSendAPI(messageData);
 }
 
-function sendKycRejectedMessage(recipientId, title, message) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    messaging_type: "MESSAGE_TAG",
-    tag:"PAYMENT_UPDATE",
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [{
-            title: title,
-            subtitle: message,
-            item_url: "https://www.google.com.tw",
-            image_url: SERVER_URL + "/assets/oneMoreStep.png",
-            buttons: [{
-              type: "web_url",
-              url: "https://tw.yahoo.com",
-              title: "Upload Again"
-            }]
-          }]
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
 function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId) {
   var messageData = {
     recipient: {
@@ -1055,7 +1029,7 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: EMQ_WEB_SERVICE_URL + "SendMoney_Prompt?reference="+transferId,
+              url: EMQ_WEB_SERVICE_URL + "SendMoney_Confirm_Prompt?reference="+transferId,
               title: "Submit"
             }]
           }]
