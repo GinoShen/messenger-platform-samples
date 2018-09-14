@@ -200,7 +200,7 @@ app.post('/sendMessageFromCore', function (req, res) {
 
     case 'customer-centric':
     if(title.length>0){
-      sendTextMessage(recipientId, title+" "+message)
+      sendTextMessage(recipientId, title+": "+message)
     }else{
       sendTextMessage(recipientId, title+message)
     }
@@ -1029,7 +1029,7 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: EMQ_WEB_SERVICE_URL + "SendMoney_Confirm_Prompt?reference="+transferId,
+              url: EMQ_WEB_SERVICE_URL + "?route=SendMoney_Confirm_Prompt?reference="+transferId,
               title: "Submit"
             }]
           }]
@@ -1061,7 +1061,7 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message, transfe
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: EMQ_WEB_SERVICE_URL+"Transaction?id="+transferId,
+              url: EMQ_WEB_SERVICE_URL+"?route=Transaction?id="+transferId,
               title: "DETAIL"
             }]
           }]
