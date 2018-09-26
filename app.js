@@ -1029,7 +1029,8 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: EMQ_WEB_SERVICE_URL + "?route=SendMoney_Confirm_Prompt?reference="+transferId,
+              webview_share_button:false,
+              url: EMQ_WEB_SERVICE_URL + "?route=SendMoney_Confirm_Prompt&reference="+transferId,
               title: "Submit"
             }]
           }]
