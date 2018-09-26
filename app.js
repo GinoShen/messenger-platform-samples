@@ -1029,7 +1029,7 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              webview_share_button:false,
+              webview_share_button:"HIDE",
               url: EMQ_WEB_SERVICE_URL + "?route=SendMoney_Confirm_Prompt&reference="+transferId,
               title: "Submit"
             }]
