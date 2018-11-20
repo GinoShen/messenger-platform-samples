@@ -1024,7 +1024,7 @@ function sendRecipientDataUpdatedMessage(recipientId, title, message, transferId
           elements: [{
             title: title,
             subtitle: message,
-            item_url: "http://emq-demo.pre-stage.club",
+            item_url: EMQ_WEB_SERVICE_URL + "?route=SendMoney_Confirm_Prompt&reference="+transferId,
             image_url: SERVER_URL + "/assets/oneMoreStep.png",
             buttons: [{
               type: "web_url",
@@ -1057,12 +1057,12 @@ function sendTrasactionStatusUpdatedMessage(recipientId, title, message, transfe
           elements: [{
             title: title,
             subtitle: message,
-            item_url: "http://emq-demo.pre-stage.club",
+            item_url: EMQ_WEB_SERVICE_URL+"?route=Transaction&id="+transferId,
             image_url: SERVER_URL + "/assets/transactionDetail.png",
             buttons: [{
               type: "web_url",
               messenger_extensions: true,
-              url: EMQ_WEB_SERVICE_URL+"?route=Transaction?id="+transferId,
+              url: EMQ_WEB_SERVICE_URL+"?route=Transaction&id="+transferId,
               title: "DETAIL"
             }]
           }]
@@ -1087,31 +1087,31 @@ function sendPayoutListMessage(recipientId) {
           elements: [{
               title: "to Bank Accout",
               subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
-              item_url: "https://emq-demo.pre-stage.club",
+              item_url: EMQ_WEB_SERVICE_URL,
               image_url: SERVER_URL + "/assets/bank_account.png",
               buttons: [{
                 type: "web_url",
-                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                url: EMQ_WEB_SERVICE_URL,
                 title: "Make a Transaction"
             }],
           },{
               title: "to Cash Delivery",
               subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
-              item_url: "https://emq-demo.pre-stage.club",
+              item_url: EMQ_WEB_SERVICE_URL,
               image_url: SERVER_URL + "/assets/cash_delivery.png",
               buttons: [{
                 type: "web_url",
-                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                url: EMQ_WEB_SERVICE_URL,
                 title: "Make a Transaction"
             }],
           },{
               title: "to Visa",
               subtitle: "Send via\nCircle K: 6.312\nJetcode: 6.345",
-              item_url: "https://emq-demo.pre-stage.club",
+              item_url: EMQ_WEB_SERVICE_URL,
               image_url: SERVER_URL + "/assets/VISA.png",
               buttons: [{
                 type: "web_url",
-                url: "https://emq-demo.pre-stage.club/RequestRecipient_DataSender",
+                url: EMQ_WEB_SERVICE_URL,
                 title: "Make a Transaction"
             }],
           }]
@@ -1205,14 +1205,14 @@ function addPersistentMenu(){
         {
           "type":"web_url",
           "title":"Send someone money",
-          "url":"https://emq.pre-stage.club/RequestRecipient_DataSender",
+          "url":EMQ_WEB_SERVICE_URL,
           "webview_height_ratio":"tall",
           "messenger_extensions":false
         },
         {
           "type":"web_url",
           "title":"Request money from someone",
-          "url":"https://emq.pre-stage.club/RequestMoney_Calculator",
+          "url":EMQ_WEB_SERVICE_URL,
           "webview_height_ratio":"tall",
           "messenger_extensions":false
         }
@@ -1309,12 +1309,12 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
         var element = {
           title: title,
           subtitle: srcString,
-          item_url: "https://emq-demo.pre-stage.club",
+          item_url: EMQ_WEB_SERVICE_URL,
           image_url: SERVER_URL + "assets/"+imageName,
           buttons: [{
             type: "web_url",
             messenger_extensions: true,
-            url: "https://emq-demo.pre-stage.club?destinationCountry="+destinationCountry+"&destinationCurrency="+destinationCurrency,
+            url: EMQ_WEB_SERVICE_URL+"?destinationCountry="+destinationCountry+"&destinationCurrency="+destinationCurrency,
             title: "Create a Transaction"
           }]
         }
