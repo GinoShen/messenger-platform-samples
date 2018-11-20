@@ -1314,7 +1314,7 @@ function callEMQAPIGetCooridor(recipientId, sourceCountry, sourceCurrency, desti
           buttons: [{
             type: "web_url",
             messenger_extensions: true,
-            url: EMQ_WEB_SERVICE_URL+"?destinationCountry="+destinationCountry+"&destinationCurrency="+destinationCurrency,
+            url: EMQ_WEB_SERVICE_URL+"?route=home&destinationCountry="+destinationCountry+"&destinationCurrency="+destinationCurrency,
             title: "Create a Transaction"
           }]
         }
