@@ -1514,6 +1514,7 @@ function setupGetStartedButton(res){
             if (p.length == 0){
                 return stringMapping("payment_method_cash_delivery");
             }else{
+              
                 return stringMapping("payment_method_cash_delivery") + "("+p+")";
             }
           }
