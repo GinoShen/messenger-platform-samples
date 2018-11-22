@@ -358,6 +358,10 @@ function receivedMessage(event) {
       //   sendReceiptMessage(senderID);
       //   break;
 
+      case 'quick reply':
+        sendQuickReply(senderID);
+        break;
+
       // case 'read receipt':
       //   sendReadReceipt(senderID);
       //   break;
@@ -375,42 +379,40 @@ function receivedMessage(event) {
       //   break;
 
       case 'today rate':
-      // restrict payout country to PHL
-//        sendHKRateQuickReply(senderID);
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "PHP");
+        sendHKRateQuickReply(senderID);
         break;
 
       case 'phl':
         callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "PHP");
         break;
 
-      // case 'chn':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "CNY");
-      //   break;
-      //
-      // case 'ind':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "INR");
-      //   break;
-      //
-      // case 'jpn':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "JPY");
-      //   break;
-      //
-      // case 'idn':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "IDR");
-      //   break;
-      //
-      // case 'vnm':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD",messageText.toUpperCase(), "");
-      //   break;
-      //
-      // case 'vnm-usd':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "USD");
-      //   break;
-      //
-      // case 'vnm-vnd':
-      //   callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "VND");
-      //   break;
+      case 'chn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "CNY");
+        break;
+
+      case 'ind':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "INR");
+        break;
+
+      case 'jpn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "JPY");
+        break;
+
+      case 'idn':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "IDR");
+        break;
+
+      case 'vnm':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD",messageText.toUpperCase(), "");
+        break;
+
+      case 'vnm-usd':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "USD");
+        break;
+
+      case 'vnm-vnd':
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD","VNM", "VND");
+        break;
 
       // case 'add menu':
       //   addPersistentMenu();
