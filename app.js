@@ -377,7 +377,7 @@ function receivedMessage(event) {
       case 'today rate':
       // restrict payout country to PHL
 //        sendHKRateQuickReply(senderID);
-        callEMQAPIGetCooridor(senderID, "HKG", "HKD", messageText.toUpperCase(), "PHP");
+        callEMQAPIGetCooridor(senderID, "HKG", "HKD", "PHL", "PHP");
         break;
 
       case 'phl':
