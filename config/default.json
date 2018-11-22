@@ -1,6 +1,6 @@
 {
     "appSecret": "ac32f93aee001b61f4009d13832d44ed",
-    "pageAccessToken": "EAAKxSY4R9ZAABACnJFda8uRv0Am0b4POaIEa8SdMW9eBUZAVouCWEsJGZCoduwizZBbr2kWjsbDgl2ihdTDsGf8JPZA3eOo3OqPnqERHpBJx9hVmR1dgBwiJdYczzt6L8spldcd2fNXAMtZCFoeHzDPfCuhpKabKqz0L3Ncyd3EADhfPPjS5SI",
+    "pageAccessToken": "EAAKxSY4R9ZAABAEcOvVEAhQH2pRZBMudlWbDxgigsR9RZBHOZCYHSlkoXj0ZAZArfvdb7N5h9HaZBxefd9LiWZAoqSh1fVMbmp0tIsyDeFySwaPKZCWcmZAQ11CVLBpVCR3N1KZCypaBjxXu1ohhHdeCop6J6giA2RPZBOKPoLgBIddKMy0CWmb464Yr ",
     "validationToken": "12345678",
     "serverURL": "https://emq-test.herokuapp.com/",
     "emqAPIURL": "https://staging-api.emq.com/",
